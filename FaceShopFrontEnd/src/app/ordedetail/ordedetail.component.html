@@ -1,0 +1,102 @@
+<div class="nav-tabs-custom no-margin">
+    <div class="tab-content">
+      <div class="tab-pane active" style="padding-left: 36px;">
+        <div class="box-header with-border">
+          <h2 class="box-title">Quản lý đơn hàng</h2>
+        </div>
+        <div class="row">
+          <hr style="border-top:1px solid #696969; width: 100%">
+          <div class="col-md-12" >         
+            <div >
+              <div class="row">
+                <div class="col-md-4">
+                  <div  class="form-group custom-list-option" >
+                    <label for="pack" class="custom-option">
+                      Mã đơn hàng: <strong>{{order.name}}</strong>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div  class="form-group custom-list-option" >
+                    <label for="pack" class="custom-option">
+                      Ngày đặt hàng: <strong>{{order.datetime|date:'dd/MM/yyyy-hh:mm'}}</strong>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div  class="form-group custom-list-option" >
+                    <label for="pack" class="custom-option">
+                      Tổng tiền: <strong>{{order.total|number}}VNĐ</strong>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div  class="form-group custom-list-option" >
+                    <label for="pack" class="custom-option">
+                      Số điện thoại: <strong>{{order.mobile}}</strong>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <div  class="form-group custom-list-option" >
+                        <label for="pack" class="custom-option">
+                          Trạng thái: <strong>{{order.status}}</strong>
+                        </label>
+                      </div>
+                </div>
+              </div>
+              <div class="row">
+                <div  class="form-group custom-list-option" >
+                  <label for="pack" class="custom-option">
+                    Địa chỉ: <strong>{{order.address}}</strong>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  
+                </div>
+                <div class="col-md-4">
+                  
+                </div>
+              </div>
+              <div class="row">
+                <table style="width:100%;text-align: center">
+                  <tr>
+                    <th style="width:5%">STT</th>
+                    <th style="width:25%">Hình ảnh</th>
+                    <th style="width:20%">Mã sản phẩm</th>
+                    <th style="width:20%">Tên sản phẩm</th>
+                    <th style="width:10%">Số lượng</th>
+                    <th style="width:20%">Giá sản phẩm</th>
+                  </tr>
+                  <tr  *ngFor="let item of orderdetai.data.listsearchOrderDetail;let i = index">
+                    <td style="width:5%">{{i + x1}}</td>
+                    <td style="width:25%;height: 100%;"><img src="{{item.product.image}}" style="height: 120px; width:120px" class="img-fluid" alt=""></td>
+                    <td style="width:20%">{{item.product.code}}</td>
+                    <td style="width:20%">{{item.product.name}}</td>
+                    <td style="width:10%">{{item.orderDetail.qty}}</td>
+                    <td style="width:20%">{{item.product.price|number}} VNĐ</td>
+                  </tr>
+                </table>
+              </div>
+              
+            </div>
+            <div class="row" style="padding-top: 50px">
+              <div class="col-md-4" style="float: right">
+                <button  (click)="quaylai()" style="background-color: #696969" class="btn btn-flat btn-lg btn-block btn-block">Quay lại</button>
+              </div>
+              <div class="col-md-4"></div>
+              <div class="col-md-4" style="float: right">
+                <button (click)="huydonhang()" style="background-color: coral" class="btn btn-flat btn-lg btn-block btn-block">Hủy đơn hàng</button>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- modal-content -->

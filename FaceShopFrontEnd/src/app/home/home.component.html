@@ -1,0 +1,48 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary"></mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item  href="/home/">Trang chủ</a>
+      <a mat-list-item routerLink="/home/datphong">Hàng mới về</a>
+      <a mat-list-item routerLink="/home/thuephong" >Giày</a>
+      <a mat-list-item routerLink="/home/dichvu">Túi</a>
+      <a mat-list-item routerLink="/home/thanhtoan" >Quần tây</a>
+      <a mat-list-item routerLink="/home/reportlist">Áo sơ mi</a>
+      <a mat-list-item routerLink="/home/qlnhanvien">Đồ nam</a>
+      <a mat-list-item  routerLink="/home/qlphong">Đồ nữ</a>
+      <a mat-list-item  routerLink="/home/qldichvu">Sale</a>
+      <a mat-list-item  routerLink="/home/qlthietbi">Bộ sưu tập</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+       >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span style="padding-left: 40%">FACESHOP</span> 
+      <span class="left"></span>
+      <button class="tk" mat-button><mat-icon aria-label="Side nav toggle icon">notification_important</mat-icon></button>
+      <button class="tk" mat-button><mat-icon aria-label="Side nav toggle icon">add_shopping_cart</mat-icon></button>
+      <button *ngIf="!isUser" class="tk" mat-button routerLink="/login" ><mat-icon aria-label="Side nav toggle icon">account_circle</mat-icon>Sign in</button>
+      <button *ngIf="isUser" class="tk" mat-button [matMenuTriggerFor]="menu"><mat-icon aria-label="Side nav toggle icon">account_circle</mat-icon>{{user.name}}</button>
+      <mat-menu #menu="matMenu">
+      <button mat-menu-item>Thông tin</button>
+      <button mat-menu-item (click)="order()">Đơn hàng của tôi</button>
+      <button mat-menu-item (click)="horder()">Lịch sử giao dịch</button>
+      <button mat-menu-item  (click)="logout()">Logout</button>
+</mat-menu>
+    </mat-toolbar>
+    <div >
+      <router-outlet></router-outlet></div>
+    <ng-content></ng-content>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
