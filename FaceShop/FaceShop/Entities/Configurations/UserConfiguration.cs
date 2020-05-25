@@ -12,7 +12,8 @@ namespace FaceShop.Entities.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.Name).IsRequired();
+            builder.Property(t => t.UserName).IsRequired();
+            builder.Property(t => t.Password).IsRequired();
         }
     }
 }

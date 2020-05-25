@@ -21,7 +21,7 @@ namespace FaceShop.Entities
 
         //[View]
 
-        public int Sold { get; set; }
+        //public int Sold { get; set; }
 
     }
 }

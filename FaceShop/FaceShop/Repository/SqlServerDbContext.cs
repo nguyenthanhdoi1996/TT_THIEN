@@ -16,7 +16,7 @@ namespace FaceShop.Repository
         public string AppConfigName { get; set; } = "appsettings.json";
 
         public SqlServerDbContext()
-        { 
+        {
         }
 
         public SqlServerDbContext(string connectionString)

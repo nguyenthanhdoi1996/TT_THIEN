@@ -9,6 +9,8 @@ namespace FaceShop.Entities
     {
         public string Email { get; set; }
 
+        public string UserName { get; set; }
+
         public string Password { get; set; }
 
         public string Name { get; set; }
@@ -17,7 +19,7 @@ namespace FaceShop.Entities
 
         public string Mobile { get; set; }
 
-        public DateTime DOB { get; set; }
+        public DateTime? DOB { get; set; }
 
         public string Gender { get; set; }
 
