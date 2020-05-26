@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace FaceShop.Controllers
 {
 
-    public class HomeController : BaseController
+    public class HomeController
     {
-        [AllowAnonymous]
+         
         [Route("")]
         [HttpGet]
         public ApiJsonResult Index()

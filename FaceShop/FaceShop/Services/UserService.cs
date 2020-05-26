@@ -1,7 +1,6 @@
 ﻿using FaceShop.Entities;
 using FaceShop.Repository;
 using FaceShop.Services.Interfaces;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,47 +8,57 @@ using System.Threading.Tasks;
 
 namespace FaceShop.Services
 {
-    public class LoginService : ILoginService
+    public class UserService : IUserService
     {
-        private readonly IGenericRepository<User> _loginRepository;
+        private readonly IGenericRepository<User> _userRepository;
 
-        public LoginService(IGenericRepository<User> loginRepository)
+        public UserService(IGenericRepository<User> userRepository)
         {
-            _loginRepository = loginRepository;
+            _userRepository = userRepository;
+        }
+
+        public IEnumerable<User> GetUser()
+        {
+            return this._userRepository.GetAll().ToList();
+        }
+
+        public User GetUserById(long userId)
+        {
+            return _userRepository.Get(userId);
         }
 
         public void ChangePasswordById(long userId, string newPassWord)
         {
-            User user = _loginRepository.Get(userId);
+            User user = _userRepository.Get(userId);
 
             if (user != null)
             {
                 user.Password = newPassWord;
-                _loginRepository.Update(user);
+                _userRepository.Update(user);
             }
             else throw new ArgumentException("user is not exists");
 
-            _loginRepository.Save();
+            _userRepository.Save();
         }
 
         public void ChangePasswordByUsername(string userName, string newPassWord)
         {
-            User user = _loginRepository.GetAll().FirstOrDefault(
+            User user = _userRepository.GetAll().FirstOrDefault(
                 t => t.UserName.Equals(userName, StringComparison.InvariantCultureIgnoreCase));
 
             if (user != null)
             {
                 user.Password = newPassWord;
-                _loginRepository.Update(user);
+                _userRepository.Update(user);
             }
             else throw new ArgumentException("user is not exists");
 
-            _loginRepository.Save();
+            _userRepository.Save();
         }
 
         public bool RegisterUser(string userName, string password)
         {
-            if (string.IsNullOrEmpty(userName) 
+            if (string.IsNullOrEmpty(userName)
                 || string.IsNullOrEmpty(password)
                 || userName.Any(Char.IsWhiteSpace)
                 || password.Any(Char.IsWhiteSpace))
@@ -57,7 +66,7 @@ namespace FaceShop.Services
                 throw new ArgumentException("username or password invalid");
             }
 
-            User exist = _loginRepository.GetAll().FirstOrDefault(
+            User exist = _userRepository.GetAll().FirstOrDefault(
                 t => t.UserName.Equals(userName, StringComparison.InvariantCultureIgnoreCase));
 
             if (exist != null)
@@ -72,13 +81,12 @@ namespace FaceShop.Services
             };
 
 
-            _loginRepository.Add(user);
+            _userRepository.Add(user);
 
-            _loginRepository.Save();
+            _userRepository.Save();
 
             return true;
 
         }
-
     }
 }

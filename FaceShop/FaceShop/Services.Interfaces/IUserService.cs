@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace FaceShop.Services.Interfaces
 {
-    public interface ILoginService
+    public interface IUserService
     {
+        IEnumerable<User> GetUser();
+
+        User GetUserById(long id);
+
         void ChangePasswordById(long userId, string newPassWord);
 
         void ChangePasswordByUsername(string userName, string newPassWord);

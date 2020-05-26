@@ -9,7 +9,7 @@ namespace FaceShop.Repository
     {
         TEntity Get(params object[] keyValues);
 
-        IQueryable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll();
 
         void Add(TEntity entity);
 

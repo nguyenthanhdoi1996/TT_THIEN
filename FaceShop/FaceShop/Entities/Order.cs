@@ -7,8 +7,6 @@ namespace FaceShop.Entities
 {
     public class Order : BaseEntity
     {
-        public string Name { get; set; }
-
         public string Mobile { get; set; }
 
         public string Address { get; set; }
@@ -23,6 +21,6 @@ namespace FaceShop.Entities
 
         public long UserId { get; set; }
 
-        public bool IsOrder { get; set; }
+        public bool IsPay { get; set; }
     }
 }

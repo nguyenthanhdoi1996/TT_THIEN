@@ -33,9 +33,9 @@ namespace FaceShop.Repository
             return this.Entities.Find(keyValues);
         }
 
-        public IQueryable<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll()
         {
-            return Entities.AsQueryable<TEntity>();
+            return Entities.AsEnumerable<TEntity>();
         }
 
         public void Add(TEntity entity)

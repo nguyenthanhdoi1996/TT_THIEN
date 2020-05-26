@@ -19,6 +19,8 @@ namespace FaceShop.Entities
 
         public string Detail { get; set; }
 
+        public int? IsDeleted { get; set; }
+
         //[View]
 
         //public int Sold { get; set; }

@@ -54,8 +54,11 @@ namespace FaceShop
             //services.AddSingleton(provider => Configuration);
             //services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddScoped<IFaceShopService, FaceShopService>();
-            services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IOrderDetailService, OrderDetailService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
