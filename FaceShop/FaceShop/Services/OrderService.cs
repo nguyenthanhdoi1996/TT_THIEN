@@ -43,8 +43,13 @@ namespace FaceShop.Services
                 var checkUserId = _userRepository.GetAll()
                     .FirstOrDefault(t => t.Id == order.UserId);
 
+
                 if (checkUserId == null)
                 {
+                    if(order.CustomerId == null)
+                    {
+                        throw new ArgumentException("UserId or CustomerId is required");
+                    }
                     throw new ArgumentException("user id is not exists");
                 }
 

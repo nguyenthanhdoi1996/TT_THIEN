@@ -20,13 +20,19 @@ namespace FaceShop.Controllers
             _buyService = buyService;
         }
      
-
         [Route("CustomerBuy")]
         [HttpPost]
         public ApiJsonResult InsertBuy([FromBody] OrderDTO orderDTO)
         {
-            
-            return new ApiJsonResult { Success = true, Data = null };
+            try
+            {
+                _buyService.InsertBuy(orderDTO);
+                return new ApiJsonResult { Success = true, Data = null };
+            }
+            catch(Exception ex)
+            {
+                return new ApiJsonResult { Success = false, Data = ex.Message };
+            }
         }
     }
 }

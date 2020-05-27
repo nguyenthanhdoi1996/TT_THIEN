@@ -15,15 +15,8 @@ namespace FaceShop.Entities
 
         public double Price { get; set; }
 
-        //[Desc]
-
         public string Detail { get; set; }
 
-        public bool IsDeleted { get; set; }
-
-        //[View]
-
-        //public int Sold { get; set; }
-
+        public bool? IsDeleted { get; set; }
     }
 }

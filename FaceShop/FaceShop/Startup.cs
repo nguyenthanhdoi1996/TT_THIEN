@@ -61,6 +61,7 @@ namespace FaceShop
             services.AddScoped<IOrderDetailService, OrderDetailService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IBuyService, BuyService>();
+            services.AddScoped<ICustomerService, CustomerService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("ApiDocument", new Swashbuckle.AspNetCore.Swagger.Info
@@ -84,7 +85,8 @@ namespace FaceShop
                 .AddScoped<IGenericRepository<Order>, GenericRepository<Order>>()
                 .AddScoped<IGenericRepository<OrderDetail>, GenericRepository<OrderDetail>>()
                 .AddScoped<IGenericRepository<Product>, GenericRepository<Product>>()
-                .AddScoped<IGenericRepository<User>, GenericRepository<User>>();
+                .AddScoped<IGenericRepository<User>, GenericRepository<User>>()
+                .AddScoped<IGenericRepository<Customer>, GenericRepository<Customer>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

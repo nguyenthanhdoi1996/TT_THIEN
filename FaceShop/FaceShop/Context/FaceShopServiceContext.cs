@@ -24,6 +24,7 @@ namespace FaceShop.Context
             builder.ApplyConfiguration(new OrderDetailConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new CustomerConfiguration());
         }
 
     }

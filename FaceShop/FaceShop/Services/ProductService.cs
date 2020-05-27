@@ -42,8 +42,13 @@ namespace FaceShop.Services
 
                 if (product.Code == null)
                 {
+                    
                     throw new ArgumentException("product code is required");
                 }
+
+                var checkCode = _productRepository.GetAll().FirstOrDefault(t => t.Code == product.Code);
+
+                if (checkCode != null) throw new ArgumentException("Product Code is exists");
 
                 _productRepository.Add(product);
 

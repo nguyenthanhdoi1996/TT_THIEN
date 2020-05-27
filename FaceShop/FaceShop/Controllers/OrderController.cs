@@ -65,19 +65,19 @@ namespace FaceShop.Controllers
         [HttpPost]
         public ApiJsonResult AddOrder([FromBody] IEnumerable<Order> orders)
         {
-            //try
-            //{
-            //    if (orders.Count() > 0)
-            //    {
-            //        _orderService.AddOrder(orders);
-            //        return new ApiJsonResult { Success = true, Data = orders };
-            //    }
+            try
+            {
+                if (orders.Count() > 0)
+                {
+                    _orderService.AddOrder(orders);
+                    return new ApiJsonResult { Success = true, Data = orders };
+                }
                 return new ApiJsonResult { Success = false, Data = null };
-            //}
-            //catch (Exception ex)
-            //{
-            //    return new ApiJsonResult { Success = false, Data = ex.Message };
-            //}
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult { Success = false, Data = ex.Message };
+            }
         }
 
         [Route("DeleteOrder/{orderId}")]
