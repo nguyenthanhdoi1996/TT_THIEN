@@ -12,7 +12,7 @@ namespace FaceShop.Entities.Configurations
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.UserId).IsRequired();
+            //builder.Property(t => t.UserId).IsRequired();
         }
     }
 }

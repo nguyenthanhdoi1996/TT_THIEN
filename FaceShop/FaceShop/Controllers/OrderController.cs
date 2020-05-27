@@ -60,5 +60,55 @@ namespace FaceShop.Controllers
                 return new ApiJsonResult { Success = false, Data = ex.Message };
             }
         }
+
+        [Route("AddOrder")]
+        [HttpPost]
+        public ApiJsonResult AddOrder([FromBody] IEnumerable<Order> orders)
+        {
+            //try
+            //{
+            //    if (orders.Count() > 0)
+            //    {
+            //        _orderService.AddOrder(orders);
+            //        return new ApiJsonResult { Success = true, Data = orders };
+            //    }
+                return new ApiJsonResult { Success = false, Data = null };
+            //}
+            //catch (Exception ex)
+            //{
+            //    return new ApiJsonResult { Success = false, Data = ex.Message };
+            //}
+        }
+
+        [Route("DeleteOrder/{orderId}")]
+        [HttpPatch]
+        public ApiJsonResult DeleteOrder(long orderId)
+        {
+            try
+            {
+                _orderService.DeleteOrder(orderId);
+                return new ApiJsonResult { Success = true, Data = null };
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult { Success = false, Data = ex.Message };
+            }
+        }
+
+        [Route("PayOrder/{orderId}")]
+        [HttpPatch]
+        public ApiJsonResult PayOrder(long orderId)
+        {
+            try
+            {
+                _orderService.PayOrder(orderId);
+                return new ApiJsonResult { Success = true, Data = orderId };
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult { Success = false, Data = ex.Message };
+            }
+        }
+
     }
 }

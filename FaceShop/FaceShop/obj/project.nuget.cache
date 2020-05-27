@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "O/Y8l36T/S9RXOfn+3jYFOjDK9j5I3uOhaBCM8UySgDejD5BPKRdTRDhKkHnpmSJ6eKcJip6xIy+YQO4WPvLGQ==",
+  "dgSpecHash": "2F2nVHuDPH0ZFLiW1/ovPgK/MHImeaYukUQQKx05IA9pTAVP3JT0AFeS6zfDV30dhynmqMfJ6aaRgiIJ0Qs3WQ==",
   "success": true,
   "projectFilePath": "D:\\TT_THIEN\\FaceShop\\FaceShop\\FaceShop.csproj",
   "expectedPackageFiles": [
@@ -199,6 +199,9 @@
     "C:\\Users\\Admin\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\4.0.1\\swashbuckle.aspnetcore.swagger.4.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\4.0.1\\swashbuckle.aspnetcore.swaggergen.4.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\4.0.1\\swashbuckle.aspnetcore.swaggerui.4.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

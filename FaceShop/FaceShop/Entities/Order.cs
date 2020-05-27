@@ -11,16 +11,20 @@ namespace FaceShop.Entities
 
         public string Address { get; set; }
 
-        public DateTime Datetime { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public double Total { get; set; }
 
         public string PaymentType { get; set; }
 
-        public bool Status { get; set; } //
+        //public bool Status { get; set; } //
+
+        public string Code { get; set; }
 
         public long UserId { get; set; }
 
         public bool IsPay { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

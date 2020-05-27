@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FaceShop.Context;
 using FaceShop.Entities;
+using FaceShop.Models;
 using FaceShop.Repository;
 using FaceShop.Services;
 using FaceShop.Services.Interfaces;
@@ -59,6 +60,17 @@ namespace FaceShop
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IOrderDetailService, OrderDetailService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IBuyService, BuyService>();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("ApiDocument", new Swashbuckle.AspNetCore.Swagger.Info
+                {
+                    Version = "v2",
+                    Title = "Api document",
+                    Description = "Api document",
+                    TermsOfService = "None"
+                });
+            });
 
             services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -90,6 +102,12 @@ namespace FaceShop
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/ApiDocument/swagger.json", "ApiDocument");
+                c.RoutePrefix = "swagger";
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

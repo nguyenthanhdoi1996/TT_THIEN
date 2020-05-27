@@ -1,4 +1,5 @@
-﻿using FaceShop.Services.Interfaces;
+﻿using FaceShop.Entities;
+using FaceShop.Services.Interfaces;
 using FaceShop.Ultility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -58,5 +59,26 @@ namespace FaceShop.Controllers
                 return new ApiJsonResult { Success = false, Data = ex.Message };
             }
         }
+
+
+        [Route("AddOrderDetail")]
+        [HttpGet]
+        public ApiJsonResult AddOrderDetail(IEnumerable<OrderDetail> orderDetails)
+        {
+            try
+            {
+                if (orderDetails.Count() > 0)
+                {
+                    _orderDetailService.AddOrderDetail(orderDetails);
+                    return new ApiJsonResult { Success = true, Data = orderDetails };
+                }
+                return new ApiJsonResult { Success = false, Data = null };
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult { Success = false, Data = ex.Message };
+            }
+        }
+
     }
 }

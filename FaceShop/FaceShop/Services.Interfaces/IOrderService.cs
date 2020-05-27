@@ -11,5 +11,11 @@ namespace FaceShop.Services.Interfaces
         IEnumerable<Order> GetOrder();
 
         Order GetOrderById(long id);
+
+        void AddOrder(IEnumerable<Order> orders);
+
+        void PayOrder(long orderId);
+
+        void DeleteOrder(long orderId);
     }
 }

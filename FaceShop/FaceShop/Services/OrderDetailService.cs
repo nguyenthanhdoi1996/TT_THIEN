@@ -12,10 +12,19 @@ namespace FaceShop.Services
     {
         private readonly IGenericRepository<OrderDetail> _orderDetailRepository;
 
-        public OrderDetailService(IGenericRepository<OrderDetail> orderDetailRepository)
+        private readonly IGenericRepository<Order> _orderRepository;
+
+        private readonly IGenericRepository<Product> _productRepository;
+
+        public OrderDetailService(IGenericRepository<OrderDetail> orderDetailRepository,
+            IGenericRepository<Order> orderRepository,
+            IGenericRepository<Product> productRepository)
         {
             _orderDetailRepository = orderDetailRepository;
+            _orderRepository = orderRepository;
+            _productRepository = productRepository;
         }
+
 
         public IEnumerable<OrderDetail> GetOrderDetail()
         {
@@ -25,6 +34,39 @@ namespace FaceShop.Services
         public OrderDetail GetOrderDetailById(long orderDetailId)
         {
             return _orderDetailRepository.Get(orderDetailId);
+        }
+
+        public void AddOrderDetail(IEnumerable<OrderDetail> orderDetails)
+        {
+            foreach(var orderDetail in orderDetails)
+            {
+                if(orderDetail.Id != 0 )
+                {
+                    throw new ArgumentException("Don't insert orderDetail id");
+                }
+
+                if(orderDetail.OrderId == 0)
+                {
+                    throw new ArgumentException("Please insert OrderId");
+                }
+
+                if (orderDetail.ProductId == 0)
+                {
+                    throw new ArgumentException("Please insert ProductId");
+                }
+
+                var checkOrderId = _orderRepository.GetAll().FirstOrDefault(t => t.Id == orderDetail.OrderId);
+
+                if (checkOrderId == null) throw new ArgumentException("Order is not exists");
+
+                var checkProductId = _productRepository.GetAll().FirstOrDefault(t => t.Id == orderDetail.ProductId);
+
+                if (checkProductId == null ) throw new ArgumentException("Product is not exists");
+
+                _orderDetailRepository.Add(orderDetails);
+
+                _orderDetailRepository.Save();
+            }
         }
     }
 }

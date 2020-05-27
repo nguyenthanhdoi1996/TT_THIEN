@@ -49,7 +49,6 @@ namespace FaceShop.Services
 
                 _productRepository.Save();
             }
- 
         }
 
         public void UpdateProduct(IEnumerable<Product> products)
@@ -74,7 +73,7 @@ namespace FaceShop.Services
                 if (product.Image != null) checkProduct.Image = product.Image;
                 if (product.Price != 0) checkProduct.Price = product.Price;
                 if (product.Detail != null) checkProduct.Detail = product.Detail;
-                if (product.IsDeleted != 0) checkProduct.IsDeleted = product.IsDeleted;
+                if (product.IsDeleted == false) checkProduct.IsDeleted = product.IsDeleted;
 
                 _productRepository.Update(checkProduct);
 
@@ -91,7 +90,7 @@ namespace FaceShop.Services
             {
                 throw new ArgumentException("product is not exists");
             }
-            checkProduct.IsDeleted = 1;
+            checkProduct.IsDeleted = true;
 
             //_productRepository.Update(checkProduct);
 

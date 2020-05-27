@@ -14,7 +14,6 @@ namespace FaceShop.Entities.Configurations
             builder.HasKey(t => t.Id);
             builder.Property(t => t.OrderId).IsRequired();
             builder.Property(t => t.ProductId).IsRequired();
-            builder.Property(t => t.UserId).IsRequired();
         }
     }
 }
