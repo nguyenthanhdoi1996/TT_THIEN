@@ -9,10 +9,10 @@ D:\TT_THIEN\FaceShop\FaceShop\bin\Debug\netcoreapp2.2\FaceShop.pdb
 D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.csprojAssemblyReference.cache
 D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.AssemblyInfoInputs.cache
 D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.AssemblyInfo.cs
-D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.csproj.CoreCompileInputs.cache
 D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.RazorAssemblyInfo.cache
 D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.RazorAssemblyInfo.cs
 D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.RazorTargetAssemblyInfo.cache
 D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.dll
 D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.pdb
 D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.genruntimeconfig.cache
+D:\TT_THIEN\FaceShop\FaceShop\obj\Debug\netcoreapp2.2\FaceShop.csproj.CoreCompileInputs.cache

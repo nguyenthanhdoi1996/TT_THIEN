@@ -13,5 +13,6 @@ namespace FaceShop.Models
         public Customer Customer { get; set; }
 
         public IEnumerable<Product> Products { get; set; }
+
     }
 }

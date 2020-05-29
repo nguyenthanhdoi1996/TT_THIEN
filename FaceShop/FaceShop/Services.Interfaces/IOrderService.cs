@@ -1,4 +1,5 @@
 ﻿using FaceShop.Entities;
+using FaceShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,15 @@ namespace FaceShop.Services.Interfaces
 
         Order GetOrderById(long id);
 
-        void AddOrder(IEnumerable<Order> orders);
+        void AddOrder(Order order);
 
         void PayOrder(long orderId);
 
         void DeleteOrder(long orderId);
+
+        void CheckOrder(Order order);
+
+        Order GetOrderByCode(string code);
+        void PlusTotalMoney(Order order, double price);
     }
 }

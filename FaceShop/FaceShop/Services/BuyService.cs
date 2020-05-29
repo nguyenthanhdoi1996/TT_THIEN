@@ -1,4 +1,5 @@
-﻿using FaceShop.Entities;
+﻿using AutoMapper;
+using FaceShop.Entities;
 using FaceShop.Models;
 using FaceShop.Repository;
 using FaceShop.Services.Interfaces;
@@ -11,73 +12,61 @@ namespace FaceShop.Services
 {
     public class BuyService : IBuyService
     {
-        private readonly IGenericRepository<Order> _orderRepository;
-        private readonly IGenericRepository<Customer> _customerRepository;
-        private readonly IGenericRepository<Product> _productRepository;
-        private readonly IGenericRepository<OrderDetail> _orderDetailRepository;
+        private readonly ICustomerService _customerService;
+        private readonly IOrderService _orderService;
+        private readonly IProductService _productService;
+        private readonly IOrderDetailService _orderDetailService;
 
-        public BuyService(IGenericRepository<Order> orderRepository,
-            IGenericRepository<Customer> customerRepository,
-            IGenericRepository<Product> productRepository,
-            IGenericRepository<OrderDetail> orderDetailRepository)
+        public BuyService(ICustomerService customerService,
+            IOrderService orderService,
+            IProductService productService,
+            IOrderDetailService orderDetailService)
         {
-            _orderRepository = orderRepository;
-            _customerRepository = customerRepository;
-            _productRepository = productRepository;
-            _orderDetailRepository = orderDetailRepository;
+            _customerService = customerService;
+            _orderService = orderService;
+            _productService = productService;
+            _orderDetailService = orderDetailService;
         }
 
-        public void InsertBuy(OrderDTO orderDTO)
-        {
-            var customer = orderDTO.Customer;
-
-            if (customer.Name == null) throw new ArgumentException("Please insert name of customer");
-
-            if (customer.Mobile == null) throw new ArgumentException("Please insert mobile of customer");
-
-            if (customer.Address == null) throw new ArgumentException("Please insert address of customer");
-
-            _customerRepository.Add(customer);
-
-            _customerRepository.Save();
+        public Order InsertBuy(OrderDTO orderDTO)
+        {           
+            var addCustomerSuccess = _customerService.AddCustomer(orderDTO.Customer); // trả về CustomerId
 
             var order = orderDTO.Order;
 
-            if (order.Code == null) throw new ArgumentException("Please insert Code");
+            _orderService.CheckOrder(order); 
 
-            if (order.PaymentType == null) throw new ArgumentException("Please insert paymentType");
-
-            var selectCustomer = _customerRepository.GetAll()
-                .FirstOrDefault(t => t.Name == customer.Name && t.Mobile == customer.Mobile && t.Address == customer.Address);
-
-            order.CustomerId = selectCustomer.Id; // sau khi thêm customer vào bảng thì tìm lại customer đó lấy customerId cho Order
-
-            _orderRepository.Add(order);
-
-            _orderRepository.Save();
-
-            var selectOrder = _orderRepository.GetAll()
-                .FirstOrDefault(t => t.Code == order.Code); // 
-
+            order.CustomerId = addCustomerSuccess;
+            
             var products = orderDTO.Products;
 
+            // kiểm tra product nhập vào có tồn tại không
+            _productService.CheckExistProduct(products);
+
+            // nếu tất cả product tồn tại thì mới lập đơn hàng
+            _orderService.AddOrder(order);
+    
+            var selectOrder = _orderService.GetOrderByCode(order.Code);
+
+            // thêm mỗi product vào orderDetail
             foreach (var product in products)
             {
-                var checkProduct = _productRepository.GetAll()
-                    .FirstOrDefault(t => t.Code == product.Code);
-                if (checkProduct == null) throw new ArgumentException("Having product is not exists");
+                var selectProduct = _productService.GetProductByCode(product.Code);
 
                 OrderDetail orderDetail = new OrderDetail()
                 {
-                    ProductId = checkProduct.Id,
+                    ProductId = selectProduct.Id,
                     OrderId = selectOrder.Id
                 };
 
-                _orderDetailRepository.Add(orderDetail);
+                _orderService.PlusTotalMoney(order, selectProduct.Price);
 
-                _orderDetailRepository.Save();
-                
+                _orderDetailService.CheckOrderDetail(orderDetail);
+
+                _orderDetailService.AddOrderDetail(orderDetail);
             }
+           
+            return order;
 
         }
     }

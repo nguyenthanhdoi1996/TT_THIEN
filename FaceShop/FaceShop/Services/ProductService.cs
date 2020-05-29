@@ -1,4 +1,5 @@
 ﻿using FaceShop.Entities;
+using FaceShop.Models;
 using FaceShop.Repository;
 using FaceShop.Services.Interfaces;
 using System;
@@ -100,6 +101,21 @@ namespace FaceShop.Services
             //_productRepository.Update(checkProduct);
 
             _productRepository.Save();
+        }
+
+        public void CheckExistProduct(IEnumerable<Product> products)
+        {          
+            foreach (var product in products)
+            {
+                var checkProduct = _productRepository.GetAll()
+                    .FirstOrDefault(t => t.Code == product.Code);
+                if (checkProduct == null) throw new Exception(BuyStatus.PRODUCT_NOT_FOUND.ToString());
+            }
+        }
+
+        public Product GetProductByCode(string code)
+        {
+            return _productRepository.GetAll().FirstOrDefault(t => t.Code == code);
         }
     }
 }

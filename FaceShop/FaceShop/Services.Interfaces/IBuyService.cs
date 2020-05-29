@@ -10,6 +10,7 @@ namespace FaceShop.Services.Interfaces
 {
     public interface IBuyService
     {
-        void InsertBuy(OrderDTO orderDTO);
+        Order InsertBuy(OrderDTO orderDTO);
+
     }
 }

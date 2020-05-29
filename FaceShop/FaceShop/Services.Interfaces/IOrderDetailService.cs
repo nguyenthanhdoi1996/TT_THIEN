@@ -12,6 +12,8 @@ namespace FaceShop.Services.Interfaces
 
         OrderDetail GetOrderDetailById(long id);
 
-        void AddOrderDetail(IEnumerable<OrderDetail> orderDetails);
+        void AddOrderDetail(OrderDetail orderDetails);
+
+        void CheckOrderDetail(OrderDetail orderDetail);
     }
 }

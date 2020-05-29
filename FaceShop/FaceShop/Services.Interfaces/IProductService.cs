@@ -12,10 +12,14 @@ namespace FaceShop.Services.Interfaces
 
         Product GetProductById(long id);
 
+        Product GetProductByCode(string code);
+
         void AddProduct(IEnumerable<Product> products);
 
         void UpdateProduct(IEnumerable<Product> products);
 
         void DeleteProduct(long productId);
+
+        void CheckExistProduct(IEnumerable<Product> products);
     }
 }

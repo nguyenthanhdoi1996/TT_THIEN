@@ -8,6 +8,10 @@ namespace FaceShop.Services.Interfaces
 {
     public interface ICustomerService
     {
-        void AddCustomer(Customer customer);
+        IEnumerable<Customer> GetCustomer();
+
+        long AddCustomer(Customer customer);
+
+        Customer FindCustomerByInfo(string Name, string Mobile, string Address);
     }
 }

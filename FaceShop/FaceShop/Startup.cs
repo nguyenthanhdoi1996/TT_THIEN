@@ -62,6 +62,7 @@ namespace FaceShop
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IBuyService, BuyService>();
             services.AddScoped<ICustomerService, CustomerService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("ApiDocument", new Swashbuckle.AspNetCore.Swagger.Info

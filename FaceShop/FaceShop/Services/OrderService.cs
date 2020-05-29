@@ -1,4 +1,6 @@
-﻿using FaceShop.Entities;
+﻿using AutoMapper;
+using FaceShop.Entities;
+using FaceShop.Models;
 using FaceShop.Repository;
 using FaceShop.Services.Interfaces;
 using System;
@@ -13,6 +15,7 @@ namespace FaceShop.Services
         private readonly IGenericRepository<Order> _orderRepository;
 
         private readonly IGenericRepository<User> _userRepository;
+
 
         public OrderService(IGenericRepository<Order> orderRepository, IGenericRepository<User> userRepository)
         {
@@ -31,39 +34,13 @@ namespace FaceShop.Services
             return _orderRepository.Get(orderId);
         }
 
-        public void AddOrder(IEnumerable<Order> orders)
+        public void AddOrder(Order order)
         {
-            foreach(var order in orders)
-            {
-                if (order.Id != 0)
-                {
-                    throw new ArgumentException("don't insert order id");
-                }
-                
-                var checkUserId = _userRepository.GetAll()
-                    .FirstOrDefault(t => t.Id == order.UserId);
+            order.CreatedDate = DateTime.Now;
 
+            _orderRepository.Add(order);
 
-                if (checkUserId == null)
-                {
-                    if(order.CustomerId == null)
-                    {
-                        throw new ArgumentException("UserId or CustomerId is required");
-                    }
-                    throw new ArgumentException("user id is not exists");
-                }
-
-                else
-                {
-                    order.Address = checkUserId.Address;
-                    order.Mobile = checkUserId.Mobile;
-                    order.CreatedDate = DateTime.Now;
-                }
-
-                _orderRepository.Add(order);
-
-                _orderRepository.Save();
-            }
+            _orderRepository.Save();
         }
 
         public void PayOrder(long orderId)
@@ -92,6 +69,27 @@ namespace FaceShop.Services
             checkOrder.IsDeleted = true;
 
             _orderRepository.Save();
+        }
+
+        public void CheckOrder(Order order)
+        {
+            var checkOrderCode = _orderRepository.GetAll()
+                .FirstOrDefault(t => t.Code == order.Code);
+
+            if (checkOrderCode != null) throw new Exception(BuyStatus.ORDER_CODE_IS_EXISTS.ToString());
+        }
+
+        public Order GetOrderByCode(string code)
+        {
+            return _orderRepository.GetAll().FirstOrDefault(t => t.Code == code);
+        }
+
+        public void PlusTotalMoney(Order order, double price)
+        {
+            order.Total += price;
+
+            _orderRepository.Save();
+
         }
     }
 }
